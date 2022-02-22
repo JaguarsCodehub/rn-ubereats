@@ -21,7 +21,7 @@ const Home = ({navigation}) => {
 
   // Fetches the data from the Yelp API
   const getRestaurantsFromYelp = () => {
-    const url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&location=New%20York&limit=50';
+    const url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&location=Manhattan';
   
 
   const apiOptions = {

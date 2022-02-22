@@ -38,6 +38,7 @@ export default function RestaurantItems({navigation, ...props}) {
     <>
       {props.restaurantData.map((restaurant, index) => (
         <TouchableOpacity 
+        key={index}
         onPress={() =>
           navigation.navigate("RestaurantDetail", {
             name: restaurant.name,
