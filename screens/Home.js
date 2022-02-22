@@ -5,13 +5,15 @@ import SearchBar from '../components/home/SearchBar'
 import Categories from '../components/home/Categories'
 import RestaurantItems, { localRestaurants } from '../components/home/RestaurantItems'
 import BottomTabs from '../components/home/BottomTabs'
+import { Divider } from 'react-native-elements'
+
 
 // Yelp API Fusion Key
 const YELP_API_KEY = 'XVgJrNGDpOQovtwPEznvx41Z5HFvw0svu3F_JgEGVXcPsZzlwqWxP8VWzIAwypi50AxM6Sl_FRamT1f7foNnm_ZEnP9hLxTNuvb0jws5fLJiowIevNq1rfD06CvDYXYx';
 
 
 
-const Home = () => {
+const Home = ({navigation}) => {
 
   // Managing the states
   const [restaurantData, setRestaurantData] = useState(localRestaurants); 
@@ -19,7 +21,7 @@ const Home = () => {
 
   // Fetches the data from the Yelp API
   const getRestaurantsFromYelp = () => {
-    const url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&location=SanDiego';
+    const url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&location=New%20York&limit=50';
   
 
   const apiOptions = {
@@ -37,7 +39,7 @@ const Home = () => {
   // Runs the getRestaurantsFromYelp function when the component mounts
   useEffect(() => {
     getRestaurantsFromYelp();
-  }, [activeTab])
+  }, [activeTab]);
 
 
   return (
@@ -48,8 +50,9 @@ const Home = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <RestaurantItems restaurantData={restaurantData}/>
+        <RestaurantItems restaurantData={restaurantData} navigation={navigation}/>
       </ScrollView>
+      <Divider width={1}/>
       <BottomTabs />
       
     </SafeAreaView>
